@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include('html/_head.htm',{
+"title":"HomePage"
+})
+
+<body>
+	
+	@@include('html/_header.htm',{})
+	<div class="wrapper total__container">
+		<aside class="sidebar">
+			<div class="sidebar__content">
+				<div class="sidebar__title">
+					<h2>Kate Halushka</h2>
+					<h3>Front-End Developer</h3>
+				</div>
+				<div class="sidebar__picture">
+					<img src="img/me2.jpg" alt="">
+				</div>
+				<div class="sidebar__email">
+					<a href="mailto:kgalushka@gmail.com">kgalushka@gmail.com</a>
+				</div>
+				<div class="sidebar__phone">
+					<a href="tel:+380632358356">+38-063-235-83-56</a>
+				</div>
+				<div class="sidebar__social">
+					<a href="http://www.linkedin.com/in/kate-galushka" target="_blank" class="sidebar__link" tabindex="2">
+						<svg class="linkedin">
+							<use xlink:href="@img/icons/icons.svg#linkedin"></use>
+						</svg>
+					</a>
+					<a href="http://t.me/katuxa_galushka" target="_blank" class="sidebar__link" tabindex="2">
+						<svg class="telegram">
+							<use xlink:href="@img/icons/icons.svg#telegram"></use>
+						</svg>
+					</a>
+					<a href="https://github.com/KateGalushka?tab=repositories" target="_blank" class="sidebar__link" tabindex="2">
+						<svg class="github">
+							<use xlink:href="@img/icons/icons.svg#github"></use>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</aside>
+		<main class="page">
+			<section id="home" class="section home">
+				<div class="home__label section-label">
+					<svg>
+						<use xlink:href="@img/icons/icons.svg#home"></use>
+					</svg>
+					Introduce
+				</div>
+				<div class="home__content">
+					<h2 class="home__title">I am <span>Kate</span>,</h2>
+					<h3 class="home__subtitle">Front-End Developer</h3>
+					<p class="home__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati quae
+						praesentium reprehenderit fuga porro blanditiis similique a perspiciatis, quos consequuntur?</p>
+				</div>
+				<div class="home__button-block">
+					<a href="./Kate_Halushka_CV_(front-end_developer).pdf"
+						download="Kate Galushka CV (front-end developer).pdf" class="home__btn-download">
+						Download CV
+						<svg>
+							<use xlink:href="@img/icons/icons.svg#download"></use>
+						</svg>
+					</a>
+					<a href="#" data-goto="#projects" class="home__btn-goToProjects">
+						<img src="@img/round-text.png" alt="Image">
+						<svg>
+							<use xlink:href="@img/icons/icons.svg#arrow-down"></use>
+						</svg>
+					</a>
+				</div>
+			</section>
+
+			<section id="about" class="section about">
+				<div class="about__label section-label">
+					<svg>
+						<use xlink:href="@img/icons/icons.svg#user"></use>
+					</svg>
+					About
+				</div>
+				<div class="about__title">
+					<h2>About <span>me</span></h2>
+				</div>
+				<p class="about__text">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque voluptates, nulla earum perferendis
+					expedita inventore ratione maiores deserunt delectus sit?
+				</p>
+			</section>
+
+			<section id="skills" class="section skills">
+				<div class="skills__label section-label">
+					<svg>
+						<use xlink:href="@img/icons/icons.svg#shapes"></use>
+					</svg>
+					My skills
+				</div>
+				<div class="skills__box">
+					<div class="skills__item">
+						<img src="@img/icons/figma-logo.svg" alt="Image">
+						<p>Figma</p>
+					</div>
+					<div class="skills__item">
+						<img src="@img/icons/html-icon.svg" alt="Image">
+						<p>HTML5</p>
+					</div>
+					<div class="skills__item">
+						<img src="@img/icons/css-icon.svg" alt="Image">
+						<p>CSS3</p>
+					</div>
+					<div class="skills__item">
+						<img src="@img/icons/sass-icon.svg" alt="Image">
+						<p>Sass</p>
+					</div>
+					<div class="skills__item">
+						<img src="@img/icons/git-icon.svg" alt="Image">
+						<p>GIT</p>
+					</div>
+					<div class="skills__item">
+						<img src="@img/icons/js-icon.svg" alt="Image">
+						<p>JavaScript</p>
+					</div>
+					<div class="skills__item">
+						<img src="@img/icons/typescript-icon.svg" alt="Image">
+						<p>TypeScript</p>
+					</div>
+					<div class="skills__item">
+						<img src="@img/icons/vue-icon.svg" alt="Image">
+						<p>Vue3.js</p>
+					</div>
+					<div class="skills__item">
+						<img src="@img/icons/nuxt-icon.svg" alt="Image">
+						<p>Nuxt.js</p>
+					</div>
+				</div>
+			</section>
+
+			<section id="education" class="section education">
+				<div class="education__label section-label">
+					<svg>
+						<use xlink:href="@img/icons/icons.svg#school"></use>
+					</svg>
+					Education
+				</div>
+				<div class="education__timeline">
+					<div class="education__item">
+						<p class="education__date">10.2023 - 02.2024</p>
+						<h3 class="education__title">Vue.js Course</h3>
+						<h4 class="education__subtitle">Education Platform "Freelancer Life Style"</h4>
+					</div>
+					<div class="education__item">
+						<p class="education__date">01.2023 - 02.2023</p>
+						<h3 class="education__title">Front-End Self-Paced Online Program</h3>
+						<h4 class="education__subtitle">EPAM University</h4>
+					</div>
+					<div class="education__item">
+						<p class="education__date">01.2022 - 11.2022</p>
+						<h3 class="education__title">Front-End Developer Course</h3>
+						<h4 class="education__subtitle">CyberBionicSystematics</h4>
+					</div>
+					<div class="education__item">
+						<p class="education__date">09.1997 - 06.2002</p>
+						<h3 class="education__title">National Pharmaceutical Academy, Kharkiv</h3>
+						<h4 class="education__subtitle">Pharmacy</h4>
+					</div>
+				</div>
+			</section>
+
+			<section id="experience" class="section experience">
+				<div class="experience__label section-label">
+					<svg>
+						<use xlink:href="@img/icons/icons.svg#toolbox"></use>
+					</svg>
+					Experience
+				</div>
+				<div class="experience__timeline">
+					<div class="experience__item">
+						<p class="experience__date">01.2023 - current</p>
+						<h3 class="experience__title">Career Break</h3>
+						<h4 class="experience__subtitle"></h4>
+						<p class="experience__description">Resigned from my job to fully dedicate myself to studying front-end
+							development and working on my pet-projects. Meanwhile, volunteering for the Armed Forces of
+							Ukraine.</p>
+					</div>
+					<div class="experience__item">
+						<p class="experience__date">09.2022 - 01.2023</p>
+						<h3 class="experience__title">Pharmacy Manager</h3>
+						<h4 class="experience__subtitle">Zirka Pharmacevtiki</h4>
+						<ul class="experience__description">
+							<li>Organisation of the pharmacy functioning (monthly turnover and number of checks doubled within
+								six month of my tenure)</li>
+							<li>Management of up to 10 employees, mentoring of new team members</li>
+							<li>Clients consulting</li>
+							<li>Communication with providers</li>
+							<li>Handling of conflict situations</li>
+						</ul>
+					</div>
+					<div class="experience__item">
+						<p class="experience__date">12.2016 - 09.2022</p>
+						<h3 class="experience__title">Pharmacy Manager</h3>
+						<h4 class="experience__subtitle">Pharmacy network "RUAN"</h4>
+						<p class="experience__description"></p>
+					</div>
+			</section>
+
+			<section id="projects" class="section projects">
+				<div class="projects__label section-label">
+					<svg>
+						<use xlink:href="@img/icons/icons.svg#table"></use>
+					</svg>
+					My Projects
+				</div>
+				<div class="projects__box">
+					<div class="projects__item project">
+						<div class="project__title">MotoHub</div>
+						<div class="project__content">
+							<img class="project__image" src="@img/proj1.jpg" alt="Motohub">
+							<div class="project__item-overlay">
+								<a href="https://motohub-867c1.web.app" target="_blank">
+									Go to App
+									<svg>
+										<use xlink:href="@img/icons/icons.svg#arrow-up-right"></use>
+									</svg>
+								</a>
+								<div class="project__features">
+									<span>Vue3.js Options API</span>
+									<span>Vue Router</span>
+									<span>Vuex</span>
+									<span>Firebase</span>
+									<span>i18n</span>
+								</div>
+							</div>
+							<!-- <div class="project__features">
+								<span>Vue3.js Options API</span>
+								<span>Vue Router</span>
+								<span>Vuex</span>
+								<span>Firebase</span>
+								<span>i18n</span>
+							</div> -->
+						</div>
+					</div>
+					<div class="projects__item project">
+						<div class="project__title">SushiHouse</div>
+						<div class="project__content">
+							<img class="project__image" src="@img/proj2.jpg" alt="SushiHouse">
+							<div class="project__item-overlay">
+								<a href="https://sushi-house-c410e.web.app" target="_blank">
+									Go to App
+									<svg>
+										<use xlink:href="@img/icons/icons.svg#arrow-up-right"></use>
+									</svg>
+								</a>
+								<div class="project__features">
+									<span>Vue3.js Composition API</span>
+									<span>Vue Router</span>
+									<span>Pinia</span>
+									<span>Firebase</span>
+									<span>Vite</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="projects__item project">
+						<div class="project__title">Simple Trello Clone</div>
+						<div class="project__content">
+							<img class="project__image" src="@img/proj3.jpg" alt="Trello clone">
+							<div class="project__item-overlay">
+								<a href="https://simple-clone-trello.netlify.app" target="_blank">
+									Go to App
+									<svg>
+										<use xlink:href="@img/icons/icons.svg#arrow-up-right"></use>
+									</svg>
+								</a>
+								<div class="project__features">
+									<span>Nuxt3.js</span>
+									<span>Tailwind</span>
+									<span>Typescript</span>
+									<span>Vue-draggable</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="projects__item project">
+						<div class="project__title">The Simplest things (landing page)</div>
+						<div class="project__content">
+							<img class="project__image" src="@img/proj4.jpg" alt="Trello clone">
+							<div class="project__item-overlay">
+								<a href="https://simple-clone-trello.netlify.app" target="_blank">
+									Go to App
+									<svg>
+										<use xlink:href="@img/icons/icons.svg#arrow-up-right"></use>
+									</svg>
+								</a>
+								<div class="project__features">
+									<span>HTML</span>
+									<span>Sass</span>
+									<span>Javascript</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+		</main>
+		@@include('html/_footer.htm',{})
+	</div>
+	@@include('html/_js.htm',{})
+</body>
+
+</html>

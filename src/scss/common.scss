@@ -1,0 +1,32 @@
+// Заголовки, загальні БЕМ блоки та інше...
+svg {
+	fill: currentColor;
+}
+
+.section {
+	padding: 1rem;
+	margin-bottom: toRem(70);
+	@media (max-width:$mobileSmall){
+		 padding: .75rem 0rem; 
+	}
+}
+
+.section-label {
+	color: $faded;
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	border: 1px solid $faded;
+	border-radius: 0.75rem;
+	width: fit-content;
+	padding: 0.5rem 1rem;
+	margin-bottom: toRem(50);
+	@media (max-width:$mobileSmall){
+		 margin-bottom: toRem(30); 
+	}
+	svg {
+		width: 1rem;
+		height: 1.25rem;
+		margin-right: 0.5rem;
+		vertical-align: text-bottom;
+	}
+}

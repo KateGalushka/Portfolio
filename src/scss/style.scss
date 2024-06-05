@@ -1,0 +1,768 @@
+@use "sass:math";
+
+// Підключення міксинів ======================================================================
+@import "base/mixins";
+
+// Підключення шрифтів
+@import url(https://fonts.googleapis.com/css?family=Sora:300,regular,500,600,700,800&display=swap);
+// @import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900);
+
+$fontFamily: "Sora", sans-serif;
+$fontSize: toRem(16); // де 14(px) - розмір шрифту за замовчуванням з макету
+
+// Основні кольори
+$mainColor: rgb(240, 240, 240); // Колір шрифту за замовчуванням
+// $mainBackground: rgb(11, 11, 11);
+// $mainBackground: rgb(23, 18, 2);
+// $mainOverlay: #2b2b2b;
+$mainOverlay: rgba(120, 120, 120, 0.5);
+$mainBackground: #000;
+$bg2: rgb(77, 77, 77);
+$primary: rgb(228, 175, 18);
+$faded: rgb(153, 153, 153);
+
+// Налаштування адаптивної сітки ======================================================================
+
+// Мінімальна ширина сторінки
+$minWidth: 320;
+// Ширина полотна (макету)
+$maxWidth: 1920;
+// Ширина обмежуючого контейнера (0 = немає обмеження)
+$maxWidthContainer: 1440;
+// Загальний відступ у контейнера
+// (30 = по 15px ліворуч і праворуч, 0 = немає відступу)
+$containerPadding: 40;
+
+// Ширина спрацьовування першого брейкпоінту
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Брейк-поїнти
+$pc: toEm($containerWidth); // ПК, ноутбуки, деякі планшети у горизонтальному положенні
+$tablet: toEm(991.98); // Планшети, деякі телефони в горизонтальному положенні
+$mobile: toEm(767.98); // Телефони L
+$mobileSmall: toEm(479.98); // Телефони S
+
+// Тип адаптива:
+// 1 = чуйність (у контейнера немає брейкпоінтів),
+// 2 = по брейк-поїнт (контейнер змінює свою ширину по брейк-поїнт)
+$responsiveType: 1;
+
+// Обнулення ======================================================================
+@import "base/null";
+
+// Стилі тега BODY ======================================================================
+body {
+	// scrollbar-gutter: stable;
+	// Скролл заблоковано
+	background-color: $mainBackground;
+	.lock & {
+		overflow: hidden;
+		touch-action: none;
+		overscroll-behavior: none;
+	}
+	// Сайт завантажений
+	.loaded & {
+	}
+}
+// Оболонка wrapper ======================================================================
+.wrapper {
+	min-height: calc(100% - toRem(76));
+	display: flex;
+	// flex-direction: column;
+	// overflow: hidden;
+	@supports (overflow: clip) {
+		overflow: clip;
+	}
+	// Притискаємо footer
+	> main {
+		flex: 1 1 auto;
+	}
+	// Фікс для слайдерів
+	> * {
+		min-width: 0;
+	}
+	@media (max-width: $tablet){
+		flex-direction: column;
+		  
+	}
+}
+
+.menu-open {
+	.total__container{
+		margin-top: toRem(60);
+
+	}
+}
+// Обмежуючий контейнер ======================================================================================================================================================================================================================
+
+// (i) Стилі будуть застосовуватись до
+// всіх класів, що містять *__container
+// Наприклад header__container, main__container і т.п.
+// Сніппет (HTML): cnt
+
+@if ($responsiveType==1) {
+	// Чуйна
+	[class*="__container"] {
+		@if ($maxWidthContainer>0) {
+			max-width: toRem($containerWidth);
+			margin: 0 auto;
+		}
+		@if ($containerPadding>0) {
+			@if ($maxWidthContainer>0) {
+				padding: 0 toRem(math.div($containerPadding, 2));
+			} @else {
+				@include adaptiveValue("padding-left", math.div($containerPadding, 2), 15);
+				@include adaptiveValue("padding-right", math.div($containerPadding, 2), 15);
+			}
+		}
+	}
+} @else {
+	// Брейк-поїнтами
+	[class*="__container"] {
+		margin: 0 auto;
+		@if ($maxWidthContainer>0) {
+			max-width: toRem($containerWidth);
+		} @else {
+			@if ($containerPadding>0) {
+				padding: 0 toRem(math.div($containerPadding, 2));
+			}
+		}
+		@media (max-width: $pc) {
+			max-width: toRem(970);
+		}
+		@media (max-width: $tablet) {
+			max-width: toRem(750);
+		}
+		@media (max-width: $mobile) {
+			max-width: none;
+			@if ($containerPadding>0 and $maxWidthContainer>0) {
+				padding: 0 toRem(math.div($containerPadding, 2));
+			}
+		}
+	}
+}
+
+// Підключення базових стилів, шаблонів (заготівель) та допоміжних класів
+// Для підключення/вимкнення конкретних стилів дивись base.scss
+@import "base";
+
+// Підключення стилів загальних елементів проекту
+@import "common";
+
+// Підключення стилів окремих блоків
+@import "header";
+@import "footer";
+
+// Підключення стилів окремих сторінок
+@import "home";
+
+//sidebar
+
+.sidebar {
+	position: sticky;
+	top: toRem(50);
+	// transform: translateY(-50%);
+	min-width: 400px;
+	height: calc(100dvh - toRem(76));
+	@media (max-width: $tablet){
+		position: static;
+		height: auto;
+		min-width: 0;
+		width: 80%;
+		margin-inline: auto;
+	}
+	@media (max-width:$mobileSmall){
+		 width: 100%; 
+	}
+
+	&__content {
+		position: absolute;
+		top: 0;
+		height: auto;
+		border: 1px solid $faded;
+		border-radius: toRem(30);
+		padding: 1.5rem;
+		margin: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		z-index: 5;
+		@media (max-width: $tablet){
+			position: static;
+		}
+		@media (max-width:$mobileSmall){
+			 padding: 1rem;
+			 gap: 1rem; 
+		}
+	}
+
+	// .sidebar__title
+	&__title {
+		h2 {
+			@include adaptiveValue("font-size", 50, 24);
+			// font-size: toRem(50);
+			font-weight: 600;
+			letter-spacing: 2px;
+			line-height: 120%;
+			margin-bottom: 1rem;
+			@media (max-width: $tablet){
+				text-align: center;
+			}
+		}
+		h3 {
+			@include adaptiveValue("font-size", 24, 18);
+			// font-size: toRem(24);
+			// margin-bottom: 1rem;
+			@media (max-width: $tablet){
+				text-align: center;
+			}
+		}
+	}
+
+	// .sidebar__picture
+	&__picture {
+		margin-bottom: 1rem;
+		max-width: toRem(300);
+		margin: 0 auto;
+		// @media (max-width: $tablet){
+		// 	max-width: toRem(350);
+		// }
+		@media (max-width:$mobileSmall){
+		 	max-width: toRem(250); 
+		}
+		img {
+			width: 100%;
+			border-radius: toRem(30);
+			object-fit: cover;
+		}
+	}
+
+	// .sidebar__email
+	&__email,
+	&__phone {
+		align-self: center;
+		a {
+			@include adaptiveValue("font-size", 22, 16);
+		}
+	}
+
+	// .sidebar__phone
+	&__phone {
+	}
+
+	// .sidebar__social
+
+	&__social {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	// .social__link
+	&__link {
+		color: $faded;
+		border: 1px solid $faded;
+		border-radius: 50%;
+		outline: none;
+		transition: border 0.3s ease;
+		&:hover,
+		&:focus,
+		&:focus-within {
+			border: 1px solid $mainColor;
+		}
+
+		svg {
+			fill: currentColor;
+			width: 3rem;
+			height: 3rem;
+			padding: 0.675rem;
+			transition: all 0.3s ease;
+			&:hover, &:focus {
+				scale: 1.1;
+			}
+			&.linkedin:hover {
+				color: rgb(0, 122, 181);
+			}
+			&.telegram:hover {
+				color: rgb(50, 167, 216);
+			}
+			&.github:hover {
+				color: #fff;
+			}
+		}
+	}
+}
+
+//home section
+.home {
+	// .home__label
+	&__label {
+	}
+
+	//.home__content
+	&__content {
+		max-width: 75%;
+		margin-bottom: toRem(50);
+	}
+
+	// .home__title
+	&__title {
+		@include adaptiveValue("font-size", 32, 24);
+		// font-size: toRem(32);
+		font-weight: 600;
+		margin-bottom: 0.75em;
+		span {
+			color: $primary;
+		}
+	}
+
+	// .home__subtitle
+	&__subtitle {
+		@include adaptiveValue("font-size", 60, 30);
+		// font-size: toRem(60);
+		font-weight: 600;
+		margin-bottom: 1em;
+		background: hsla(45, 85%, 48%, 1);
+
+		background: linear-gradient(90deg, hsla(45, 85%, 48%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+		background: -moz-linear-gradient(90deg, hsla(45, 85%, 48%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+
+		background: -webkit-linear-gradient(90deg, hsla(45, 85%, 48%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	// .home__text
+	&__text {
+		font-size: toRem(20);
+		line-height: 1.5;
+		color: $faded;
+	}
+
+	// .home__btn-goToProjects
+	&__button-block {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+		align-items: center;
+		justify-content: space-between;
+		@media (max-width:$mobileSmall){
+			 justify-content: center; 
+		}
+	}
+	&__btn-download {
+		color: $faded;
+		padding: 1rem 2rem;
+		border: 1px solid $faded;
+		// border-radius: 1rem;
+		border-image: linear-gradient(90deg, hsla(45, 85%, 48%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
+		border-image-width: 2px;
+		border-image-slice: 1;
+		transition: all 0.3s ease;
+
+		svg {
+			width: 1rem;
+			height: 1.5rem;
+			display: inline-block;
+			margin-left: toRem(8);
+			vertical-align: text-bottom;
+		}
+		&:hover {
+			background-color: $primary;
+			color: #000;
+		}
+	}
+
+	&__btn-goToProjects {
+		width: fit-content;
+		// margin-left: auto;
+		display: grid;
+		grid-template-columns: 1fr;
+		place-items: center;
+		img,
+		svg {
+			grid-column: 1 / 2;
+			grid-row: 1 / 2;
+		}
+		img {
+			max-width: 100%;
+			object-fit: cover;
+			animation: rotatingBtn 10s linear infinite;
+		}
+		svg {
+			width: 2rem;
+			height: 2rem;
+		}
+		&:hover svg {
+			color: $primary;
+			transition: all 0.3s ease;
+		}
+	}
+	@keyframes rotatingBtn {
+		0% {
+			transform: rotate(0);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+}
+
+//ABOUT SECTION
+
+.about {
+	// .about__label
+	&__label {
+	}
+
+	// .about__title
+	&__title {
+		@include adaptiveValue("font-size", 32, 24);
+		font-weight: 600;
+		margin-bottom: 1em;
+		span {
+			color: $primary;
+		}
+	}
+
+	// .about__text
+	&__text {
+		font-size: toRem(20);
+		line-height: 1.5;
+		color: $faded;
+	}
+}
+
+//SKILLS
+.skills {
+	// .skills__label
+	&__label {
+	}
+
+	// .skills__box
+	&__box {
+		display: flex;
+		flex-wrap: wrap;
+		@include adaptiveValue("gap", 24, 16);
+		// gap: 1.5rem;
+		@media (max-width:$mobile){
+			 justify-content: center; 
+		}
+	}
+
+	// .skills__item
+	&__item {
+		max-width: toRem(120);
+		border: 2px solid $faded;
+		border-radius: 0.75rem;
+		padding: 1rem;
+		transition: all 0.3s ease;
+		@media (max-width:$mobile){
+			padding: 0.5rem;
+			max-width: toRem(100);
+		}
+		img {
+			width: 100%;
+			aspect-ratio: 3 / 4;
+			filter: grayscale(60%);
+			transition: filter 0.3s ease;
+		}
+		p {
+			margin-top: 1rem;
+			text-align: center;
+			@include adaptiveValue("font-size", 16, 14);
+		}
+		&:hover {
+			border: 2px solid $primary;
+			img {
+				filter: grayscale(0);
+			}
+		}
+	}
+}
+
+//EDUCATION
+
+.education {
+	// .education__label
+	&__label {
+	}
+
+	// .education__timeline
+	&__timeline {
+	}
+
+	// .education__item
+	&__item {
+		padding-top: 0;
+		padding-right: 1rem;
+		padding-left: toRem(50);
+		&:not(:last-child) {
+			padding-bottom: toRem(50);
+		}
+		// margin-bottom: toRem(50);
+		position: relative;
+		// border: 1px solid yellow;
+		&::before {
+			content: "";
+			width: 1rem;
+			height: 1rem;
+			border-radius: 50%;
+			background-color: $faded;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		&::after {
+			content: "";
+			width: 1px;
+			height: 100%;
+			border-radius: 50%;
+			background-color: $faded;
+			position: absolute;
+			top: 1rem;
+			left: 0.5rem;
+		}
+		&:hover {
+			.education__date {
+				color: $primary;
+			}
+			&::before {
+				background-color: $primary;
+			}
+		}
+	}
+
+	// .education__date
+
+	&__date {
+		color: $faded;
+		font-size: toRem(15);
+		margin-bottom: 1.5rem;
+	}
+
+	// .education__title
+
+	&__title {
+		font-size: toRem(18);
+		margin-bottom: 1rem;
+	}
+	&__subtitle {
+		color: $faded;
+	}
+}
+
+//EXPERIENCE
+
+.experience {
+	&__timeline {
+	}
+
+	// .experience__item
+	&__item {
+		padding-top: 0;
+		padding-right: 1rem;
+		padding-left: toRem(50);
+		&:not(:last-child) {
+			padding-bottom: toRem(50);
+		}
+		position: relative;
+		// border: 1px solid yellow;
+		&::before {
+			content: "";
+			width: 1rem;
+			height: 1rem;
+			border-radius: 50%;
+			background-color: $faded;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		&::after {
+			content: "";
+			width: 1px;
+			height: 100%;
+			border-radius: 50%;
+			background-color: $faded;
+			position: absolute;
+			top: 1rem;
+			left: 0.5rem;
+		}
+		&:hover {
+			.experience__date {
+				color: $primary;
+			}
+			&::before {
+				background-color: $primary;
+			}
+		}
+	}
+
+	// .experience__date
+
+	&__date {
+		color: $faded;
+		font-size: toRem(15);
+		margin-bottom: 1.5rem;
+	}
+
+	// .experience__title
+	&__title {
+		font-size: toRem(18);
+		margin-bottom: 1rem;
+	}
+	&__subtitle {
+		color: $faded;
+		margin-bottom: 1rem;
+	}
+	&__description {
+		line-height: 1.5;
+		color: $faded;
+		padding-left: 2rem;
+		li {
+			list-style-type: circle;
+		}
+	}
+}
+
+//PROJECTS
+
+.projects {
+	// .projects__label
+	&__label {
+	}
+
+	// .projects__box
+	&__box {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(toRem(400), 1fr));
+		gap: 1.5rem;
+		@media (max-width:$mobileSmall){
+			grid-template-columns: repeat(auto-fit, minmax(toRem(290), 1fr));
+			// gap: .875rem;
+		}
+	}
+
+	// .projects__item
+	&__item {
+		// box-shadow: 10px 10px 5px #4d4d4d;
+	}
+}
+
+.project {
+	transition: all 0.4s ease;
+	
+	// .project__title
+	&__title {
+		font-size: 1.25rem;
+		text-align: center;
+		margin-bottom: 1rem;
+	}
+	// .project__content
+	&__content {
+		border: 1px solid $faded;
+		border-radius: 1rem;
+		padding: 1rem;
+		position: relative;
+	}
+
+
+	// .project__image
+	&__image {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		border-radius: .75rem;
+	}
+
+	// .project__item-overlay
+	&__item-overlay {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		// background-color: $faded;
+		background: linear-gradient(
+			rgba(153, 153, 153, 0.3) 0%,
+			rgba(153, 153, 153, 0.6) 50%,
+			rgba(153, 153, 153, 0.9) 100%
+		);
+		border-radius: 1rem;
+		z-index: 2;
+		transition: all 0.4s ease;
+		a {
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			padding: 0.75rem 1rem;
+			font-weight: 600;
+			background-color: $primary;
+			color: $mainBackground;
+			// border: 1px solid $mainBackground;
+			border-radius: 1rem;
+			z-index: 3;
+			transition: all 0.3s ease;
+			svg {
+				width: 1rem;
+				height: 1rem;
+				margin-left: .5rem;
+				vertical-align: baseline;
+			} 
+			&:hover {
+				background-color: $mainBackground;
+				border: 1px solid $faded;
+				color: unset;
+			}
+		}
+	}
+	// .project__features
+	&__features {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -25%);
+		width: calc(100% - 2rem);
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		justify-content: center;
+		align-items: center;
+		// display: none;
+		padding: 1rem 0.5rem;
+		z-index: 5;
+		span {
+			display: inline-block;
+			padding: 0.75rem;
+			background-color: $mainBackground;
+			// border: 1px solid $primary;
+			border-radius: 1rem;
+			@media (max-width:$mobileSmall){
+				font-size: toRem(14);
+				padding: 0.5rem;
+			}
+		}
+	}
+
+	@media (hover: hover) {
+		&:hover, &:focus-within {
+			.project__content {
+				outline: 1px solid $primary;
+				outline-offset: 5px;
+			}
+			.project__item-overlay {
+				opacity: 1;
+			}
+			// .project__features {
+			// 	display: flex;
+			// }
+			.project__title {
+				color: $primary;
+			}
+		}
+	}
+	@media (hover: none) {
+		.project__item-overlay {
+			opacity: 1;
+		}
+	}
+}
