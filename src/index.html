@@ -5,56 +5,68 @@
 })
 
 <body>
-	
 	@@include('html/_header.htm',{})
 	<div class="wrapper total__container">
 		<aside class="sidebar">
-			<div class="sidebar__content">
-				<div class="sidebar__title">
-					<h2>Kate Halushka</h2>
-					<h3>Front-End Developer</h3>
-				</div>
-				<div class="sidebar__picture">
-					<img src="img/me2.jpg" alt="">
-				</div>
-				<div class="sidebar__email">
-					<a href="mailto:kgalushka@gmail.com">kgalushka@gmail.com</a>
-				</div>
-				<div class="sidebar__phone">
-					<a href="tel:+380632358356">+38-063-235-83-56</a>
-				</div>
-				<div class="sidebar__social">
-					<a href="http://www.linkedin.com/in/kate-galushka" target="_blank" class="sidebar__link" tabindex="2">
-						<svg class="linkedin">
-							<use xlink:href="@img/icons/icons.svg#linkedin"></use>
-						</svg>
-					</a>
-					<a href="http://t.me/katuxa_galushka" target="_blank" class="sidebar__link" tabindex="2">
-						<svg class="telegram">
-							<use xlink:href="@img/icons/icons.svg#telegram"></use>
-						</svg>
-					</a>
-					<a href="https://github.com/KateGalushka?tab=repositories" target="_blank" class="sidebar__link" tabindex="2">
-						<svg class="github">
-							<use xlink:href="@img/icons/icons.svg#github"></use>
-						</svg>
-					</a>
+			<div class="sidebar__inner">
+				<div class="sidebar__content">
+					<div class="sidebar__title">
+						<h2>Kate Halushka</h2>
+						<h3>Front-End Developer</h3>
+					</div>
+					<div class="sidebar__picture">
+						<img src="img/me2.jpg" alt="">
+					</div>
+					<div class="sidebar__email">
+						<a href="mailto:kgalushka@gmail.com">kgalushka@gmail.com</a>
+					</div>
+					<div class="sidebar__phone">
+						<a href="tel:+380632358356">+38-063-235-83-56</a>
+					</div>
+					<div class="sidebar__social">
+						<a href="http://www.linkedin.com/in/kate-galushka" target="_blank" class="sidebar__link" tabindex="2">
+							<svg class="linkedin">
+								<use xlink:href="@img/icons/icons.svg#linkedin"></use>
+							</svg>
+						</a>
+						<a href="http://t.me/katuxa_galushka" target="_blank" class="sidebar__link" tabindex="2">
+							<svg class="telegram">
+								<use xlink:href="@img/icons/icons.svg#telegram"></use>
+							</svg>
+						</a>
+						<a href="https://github.com/KateGalushka?tab=repositories" target="_blank" class="sidebar__link"
+							tabindex="2">
+							<svg class="github">
+								<use xlink:href="@img/icons/icons.svg#github"></use>
+							</svg>
+						</a>
+					</div>
 				</div>
 			</div>
 		</aside>
 		<main class="page">
-			<section id="home" class="section home">
+			<section id="home" class="section home" data-watch>
 				<div class="home__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#home"></use>
 					</svg>
 					Introduce
 				</div>
-				<div class="home__content">
+				<div class="home__content" data-watch>
 					<h2 class="home__title">I am <span>Kate</span>,</h2>
 					<h3 class="home__subtitle">Front-End Developer</h3>
-					<p class="home__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati quae
-						praesentium reprehenderit fuga porro blanditiis similique a perspiciatis, quos consequuntur?</p>
+					<p class="home__text">
+						Diligent and determined beginner web developer with a passion for crafting visually
+						appealing and user-friendly web applications.
+					</p>
+					<p class="home__text">
+						Proficient in JavaScript, HTML, CSS and Vue.js framework. Familiar with TypeScript.
+						Dedicated to learning additional technologies and expanding my skill set.
+					</p>
+					<p class="home__text">
+						Looking for a position at a great company to be a hard-working asset to any team,
+						to learn, grow and develop long-term in my career as a front-end developer.
+					</p>
 				</div>
 				<div class="home__button-block">
 					<a href="./Kate_Halushka_CV_(front-end_developer).pdf"
@@ -73,23 +85,33 @@
 				</div>
 			</section>
 
-			<section id="about" class="section about">
+			<section id="about" class="section about" data-watch data-watch data-watch-threshold="0, 0.3">
 				<div class="about__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#user"></use>
 					</svg>
 					About
 				</div>
-				<div class="about__title">
-					<h2>About <span>me</span></h2>
+				<div class="about__content">
+					<div class="about__title">
+						<h2>About <span>me</span></h2>
+					</div>
+					<p class="about__text">
+						I have a long-term successful experience in pharmacy management, which demonstrates my strong
+						problem-solving abilities, resilience
+						and positive attitude.
+					</p>
+					<p class="about__text">
+						I'm self-disciplined and diligent: I always take responsibility for my own professional development
+						and approach my work with great attention to details.
+					</p>
+					<p class="about__text">
+						I'm an eager learner and I'd like to take on new, challenging tasks.
+					</p>
 				</div>
-				<p class="about__text">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque voluptates, nulla earum perferendis
-					expedita inventore ratione maiores deserunt delectus sit?
-				</p>
 			</section>
 
-			<section id="skills" class="section skills">
+			<section id="skills" class="section skills" data-watch data-watch-threshold="0, 0.3">
 				<div class="skills__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#shapes"></use>
@@ -114,6 +136,10 @@
 						<p>Sass</p>
 					</div>
 					<div class="skills__item">
+						<img src="@img/icons/tailwind-icon.svg" alt="Image">
+						<p>Tailwind</p>
+					</div>
+					<div class="skills__item">
 						<img src="@img/icons/git-icon.svg" alt="Image">
 						<p>GIT</p>
 					</div>
@@ -136,28 +162,56 @@
 				</div>
 			</section>
 
-			<section id="education" class="section education">
+			<section id="education" class="section education" data-watch data-watch-threshold="0, 0.3">
 				<div class="education__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#school"></use>
 					</svg>
 					Education
 				</div>
-				<div class="education__timeline">
+				<div class="education__timeline" >
 					<div class="education__item">
 						<p class="education__date">10.2023 - 02.2024</p>
 						<h3 class="education__title">Vue.js Course</h3>
 						<h4 class="education__subtitle">Education Platform "Freelancer Life Style"</h4>
+						<div class="education__certificate">
+							<a href="https://drive.google.com/file/d/1knAKRFyoqKrwBoUHkZ7M9gkekXf9uyMi/view?usp=sharing" target="_blank">
+								<img src="@img/cert-Vue.jpg" alt="Image">
+							</a>
+						</div>
 					</div>
 					<div class="education__item">
 						<p class="education__date">01.2023 - 02.2023</p>
 						<h3 class="education__title">Front-End Self-Paced Online Program</h3>
 						<h4 class="education__subtitle">EPAM University</h4>
+						<div class="education__certificate">
+							<a href="https://drive.google.com/file/d/1LYnaqd_LjqPjKFAg27cETUz1RXgggIzv/view?usp=sharing" target="_blank">
+								<img src="@img/cert-epam.jpg" alt="Image">
+							</a>
+						</div>
 					</div>
 					<div class="education__item">
 						<p class="education__date">01.2022 - 11.2022</p>
 						<h3 class="education__title">Front-End Developer Course</h3>
 						<h4 class="education__subtitle">CyberBionicSystematics</h4>
+						<div class="education__certificate">
+							<a href="https://testprovider.com/ru/search-certificate/TP17587388" target="_blank">
+								<img src="@img/cert-html.jpg" alt="Image">
+							</a>
+							<a href="https://testprovider.com/ru/search-certificate/TP54516621" target="_blank">
+								<img src="@img/cert-JS.jpg" alt="Image">
+							</a>
+							<a href="https://testprovider.com/ru/search-certificate/TP74957954" target="_blank">
+								<img src="@img/cert-git.jpg" alt="Image">
+							</a>
+							<a href="https://testprovider.com/ru/search-certificate/TP68259767" target="_blank">
+								<img src="@img/cert-TS.jpg" alt="Image">
+							</a>
+							<a href="https://testprovider.com/ru/search-certificate/TP11516178" target="_blank">
+								<img src="@img/cert-Angular.jpg" alt="Image">
+							</a>
+						</div>
+						
 					</div>
 					<div class="education__item">
 						<p class="education__date">09.1997 - 06.2002</p>
@@ -167,7 +221,7 @@
 				</div>
 			</section>
 
-			<section id="experience" class="section experience">
+			<section id="experience" class="section experience" data-watch data-watch-threshold="0.3">
 				<div class="experience__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#toolbox"></use>
@@ -179,9 +233,11 @@
 						<p class="experience__date">01.2023 - current</p>
 						<h3 class="experience__title">Career Break</h3>
 						<h4 class="experience__subtitle"></h4>
-						<p class="experience__description">Resigned from my job to fully dedicate myself to studying front-end
+						<p class="experience__description">
+							Resigned from my job to fully dedicate myself to studying front-end
 							development and working on my pet-projects. Meanwhile, volunteering for the Armed Forces of
-							Ukraine.</p>
+							Ukraine.
+						</p>
 					</div>
 					<div class="experience__item">
 						<p class="experience__date">09.2022 - 01.2023</p>
@@ -204,7 +260,7 @@
 					</div>
 			</section>
 
-			<section id="projects" class="section projects">
+			<section id="projects" class="section projects" data-watch>
 				<div class="projects__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#table"></use>

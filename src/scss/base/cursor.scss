@@ -8,12 +8,14 @@
 	left: 0;
 	top: 0;
 	pointer-events: none;
+	z-index: 1000;
+	mix-blend-mode: difference;
 	&__shadow {
 		will-change: transform;
 		transition: all 0.05s linear 0s;
 		position: fixed;
-		width: toRem(50);
-		height: toRem(50);
+		width: toRem(30);
+		height: toRem(30);
 		&::after {
 			content: "";
 			position: absolute;
@@ -21,7 +23,10 @@
 			height: 100%;
 			top: 0;
 			left: 0;
-			border: 3px solid #000;
+			border: 3px solid $primary;
+			border-radius: 50%;
+			box-shadow: 2px 3px 5px rgba(228, 175, 18, .5);
+			// background-color: $primary;
 			animation: rotate 5s infinite linear;
 			@keyframes rotate {
 				0% {
@@ -35,8 +40,8 @@
 	}
 	&__pointer {
 		position: fixed;
-		width: toRem(3);
-		height: toRem(3);
+		width: toRem(10);
+		height: toRem(10);
 		top: 0;
 		left: 0;
 		&::after {
@@ -46,7 +51,8 @@
 			height: 100%;
 			top: 0;
 			left: 0;
-			border: 3px solid #000;
+			// border: 3px solid $primary;
+			background: $gradient;
 			transition: all 0.3s ease 0s;
 			border-radius: 50%;
 		}

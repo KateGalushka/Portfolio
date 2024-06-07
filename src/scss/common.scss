@@ -6,9 +6,14 @@ svg {
 .section {
 	padding: 1rem;
 	margin-bottom: toRem(70);
+	margin-left: toRem(70);
+	@media (max-width:toRem(1200)){
+		margin-left: 0;
+	}
 	@media (max-width:$mobileSmall){
 		 padding: .75rem 0rem; 
 	}
+	
 }
 
 .section-label {
@@ -20,6 +25,7 @@ svg {
 	width: fit-content;
 	padding: 0.5rem 1rem;
 	margin-bottom: toRem(50);
+	@extend %scroll-animation-up;
 	@media (max-width:$mobileSmall){
 		 margin-bottom: toRem(30); 
 	}
@@ -28,5 +34,33 @@ svg {
 		height: 1.25rem;
 		margin-right: 0.5rem;
 		vertical-align: text-bottom;
+	}
+}
+
+%scroll-animation-up {
+	opacity: 0;
+	transform: translate(0px, toRem(200));
+	transition: opacity .8s ease, transform .8s ease;
+	._watcher-view & {
+		opacity: 1;
+		transform: translate(0px, 0px);
+	}
+}
+%scroll-animation-from-left {
+	opacity: 0;
+	transform: translate(toRem(-200), 0px);
+	transition: opacity .8s ease, transform 1s ease;
+	._watcher-view & {
+		opacity: 1;
+		transform: translate(0px, 0px);
+	}
+}
+%scroll-animation-from-right {
+	opacity: 0;
+	transform: translate(toRem(200), 0px);
+	transition: opacity .8s ease, transform 1s ease;
+	._watcher-view & {
+		opacity: 1;
+		transform: translate(0px, 0px);
 	}
 }

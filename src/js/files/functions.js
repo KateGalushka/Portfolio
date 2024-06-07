@@ -623,7 +623,7 @@ export function customCursor(isShadowTrue) {
 				cursor.style.opacity = 0;
 			} else if (e.type === 'mousemove') {
 				cursor.style.removeProperty('opacity');
-				if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || (window.getComputedStyle(e.target).cursor !== 'none' && window.getComputedStyle(e.target).cursor !== 'default')) {
+				if (e.target.closest('button') || e.target.closest('a') || e.target.closest('input') || (window.getComputedStyle(e.target).cursor !== 'none' && window.getComputedStyle(e.target).cursor !== 'auto')) {
 					cursor.classList.add('_hover');
 				} else {
 					cursor.classList.remove('_hover');

@@ -11,15 +11,14 @@ $fontFamily: "Sora", sans-serif;
 $fontSize: toRem(16); // де 14(px) - розмір шрифту за замовчуванням з макету
 
 // Основні кольори
-$mainColor: rgb(240, 240, 240); // Колір шрифту за замовчуванням
-// $mainBackground: rgb(11, 11, 11);
-// $mainBackground: rgb(23, 18, 2);
-// $mainOverlay: #2b2b2b;
+$mainColor1: rgb(240, 240, 240);
+$mainColor2: #000;
 $mainOverlay: rgba(120, 120, 120, 0.5);
-$mainBackground: #000;
+$mainBackground: #0d0d0d;
 $bg2: rgb(77, 77, 77);
 $primary: rgb(228, 175, 18);
 $faded: rgb(153, 153, 153);
+$gradient: linear-gradient(90deg, hsla(45, 85%, 48%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
 
 // Налаштування адаптивної сітки ======================================================================
 
@@ -54,7 +53,8 @@ $responsiveType: 1;
 body {
 	// scrollbar-gutter: stable;
 	// Скролл заблоковано
-	background-color: $mainBackground;
+	background: $mainBackground;
+	transition: opacity 0.8s ease;
 	.lock & {
 		overflow: hidden;
 		touch-action: none;
@@ -62,6 +62,7 @@ body {
 	}
 	// Сайт завантажений
 	.loaded & {
+		opacity: 1;
 	}
 }
 // Оболонка wrapper ======================================================================
@@ -70,6 +71,7 @@ body {
 	display: flex;
 	// flex-direction: column;
 	// overflow: hidden;
+
 	@supports (overflow: clip) {
 		overflow: clip;
 	}
@@ -81,16 +83,14 @@ body {
 	> * {
 		min-width: 0;
 	}
-	@media (max-width: $tablet){
+	@media (max-width: $tablet) {
 		flex-direction: column;
-		  
 	}
 }
 
 .menu-open {
-	.total__container{
+	.total__container {
 		margin-top: toRem(60);
-
 	}
 }
 // Обмежуючий контейнер ======================================================================================================================================================================================================================
@@ -160,39 +160,71 @@ body {
 
 .sidebar {
 	position: sticky;
-	top: toRem(50);
+	top: toRem(76);
 	// transform: translateY(-50%);
-	min-width: 400px;
+	min-width: 425px;
 	height: calc(100dvh - toRem(76));
-	@media (max-width: $tablet){
+	overflow: auto;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+	transform: translateX(-100%);
+	opacity: 0;
+	transition:
+		transform 0.7s ease,
+		opacity 0.7s ease;
+	.loaded & {
+		transform: translateX(0);
+		opacity: 1;
+	}
+
+	@media (max-width: $tablet) {
 		position: static;
 		height: auto;
 		min-width: 0;
 		width: 80%;
 		margin-inline: auto;
+		transform: none;
+		opacity: 1;
 	}
-	@media (max-width:$mobileSmall){
-		 width: 100%; 
+	@media (max-width: $mobileSmall) {
+		width: 100%;
+	}
+	&__inner {
+		// position: absolute;
+		// top: 1rem;
+		width: 100%;
+		display: grid;
+		place-items: center;
+		// @media (max-width: $tablet) {
+		// 	position: static;
+		// }
 	}
 
 	&__content {
-		position: absolute;
-		top: 0;
-		height: auto;
 		border: 1px solid $faded;
 		border-radius: toRem(30);
-		padding: 1.5rem;
+		padding: 3rem 1.5rem;
 		margin: 1rem;
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 		gap: 1.5rem;
+		transition: all 0.5s ease;
 		z-index: 5;
-		@media (max-width: $tablet){
-			position: static;
+		&:hover {
+			border: 1px solid transparent;
+			background:
+				linear-gradient($mainBackground 0 0) padding-box,
+				linear-gradient(30deg, hsla(45, 85%, 48%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
 		}
-		@media (max-width:$mobileSmall){
-			 padding: 1rem;
-			 gap: 1rem; 
+		@media (max-width: $tablet) {
+			width: 100%;
+		}
+		@media (max-width: $mobileSmall) {
+			padding: 1rem;
+			gap: 1rem;
 		}
 	}
 
@@ -205,7 +237,7 @@ body {
 			letter-spacing: 2px;
 			line-height: 120%;
 			margin-bottom: 1rem;
-			@media (max-width: $tablet){
+			@media (max-width: $tablet) {
 				text-align: center;
 			}
 		}
@@ -213,7 +245,7 @@ body {
 			@include adaptiveValue("font-size", 24, 18);
 			// font-size: toRem(24);
 			// margin-bottom: 1rem;
-			@media (max-width: $tablet){
+			@media (max-width: $tablet) {
 				text-align: center;
 			}
 		}
@@ -227,8 +259,8 @@ body {
 		// @media (max-width: $tablet){
 		// 	max-width: toRem(350);
 		// }
-		@media (max-width:$mobileSmall){
-		 	max-width: toRem(250); 
+		@media (max-width: $mobileSmall) {
+			max-width: toRem(250);
 		}
 		img {
 			width: 100%;
@@ -268,7 +300,7 @@ body {
 		&:hover,
 		&:focus,
 		&:focus-within {
-			border: 1px solid $mainColor;
+			border: 1px solid $mainColor1;
 		}
 
 		svg {
@@ -277,7 +309,8 @@ body {
 			height: 3rem;
 			padding: 0.675rem;
 			transition: all 0.3s ease;
-			&:hover, &:focus {
+			&:hover,
+			&:focus {
 				scale: 1.1;
 			}
 			&.linkedin:hover {
@@ -302,7 +335,11 @@ body {
 	//.home__content
 	&__content {
 		max-width: 75%;
-		margin-bottom: toRem(50);
+		margin-bottom: toRem(20);
+		@extend %scroll-animation-up;
+		@media (max-width: toRem(1200)) {
+			max-width: 100%;
+		}
 	}
 
 	// .home__title
@@ -336,9 +373,12 @@ body {
 
 	// .home__text
 	&__text {
-		font-size: toRem(20);
+		@include adaptiveValue("font-size", 20, 16);
 		line-height: 1.5;
 		color: $faded;
+		text-indent: 2.5rem;
+		// text-wrap: balance;
+		text-align: justify;
 	}
 
 	// .home__btn-goToProjects
@@ -348,8 +388,12 @@ body {
 		gap: 1.5rem;
 		align-items: center;
 		justify-content: space-between;
-		@media (max-width:$mobileSmall){
-			 justify-content: center; 
+		@media (max-width: $tablet) {
+			justify-content: center;
+			gap: 3rem;
+		}
+		@media (max-width: $mobileSmall) {
+			justify-content: center;
 		}
 	}
 	&__btn-download {
@@ -413,8 +457,8 @@ body {
 //ABOUT SECTION
 
 .about {
-	// .about__label
-	&__label {
+	// .about__content
+	&__content {
 	}
 
 	// .about__title
@@ -422,6 +466,8 @@ body {
 		@include adaptiveValue("font-size", 32, 24);
 		font-weight: 600;
 		margin-bottom: 1em;
+		transition-delay: 0.3s;
+		@extend %scroll-animation-up;
 		span {
 			color: $primary;
 		}
@@ -429,9 +475,11 @@ body {
 
 	// .about__text
 	&__text {
-		font-size: toRem(20);
+		@include adaptiveValue("font-size", 20, 16);
 		line-height: 1.5;
 		color: $faded;
+		transition-delay: 0.6s;
+		@extend %scroll-animation-up;
 	}
 }
 
@@ -446,20 +494,22 @@ body {
 		display: flex;
 		flex-wrap: wrap;
 		@include adaptiveValue("gap", 24, 16);
-		// gap: 1.5rem;
-		@media (max-width:$mobile){
-			 justify-content: center; 
+		// transition-delay: 0.3s;
+		// @extend %scroll-animation-up;
+		@media (max-width: $mobile) {
+			justify-content: center;
 		}
 	}
 
 	// .skills__item
 	&__item {
 		max-width: toRem(120);
+		width: 100%;
 		border: 2px solid $faded;
 		border-radius: 0.75rem;
 		padding: 1rem;
-		transition: all 0.3s ease;
-		@media (max-width:$mobile){
+		transition: all 3s ease;
+		@media (max-width: $mobile) {
 			padding: 0.5rem;
 			max-width: toRem(100);
 		}
@@ -478,6 +528,18 @@ body {
 			border: 2px solid $primary;
 			img {
 				filter: grayscale(0);
+			}
+		}
+		&:nth-child(odd) {
+			@extend %scroll-animation-up;
+		}
+		&:nth-child(even) {
+			@extend %scroll-animation-from-left;
+		}
+		@for $i from 1 through 10 {
+			$delay: $i * 0.25;
+			&:nth-child(#{$i}) {
+				transition-delay: #{$delay}s;
 			}
 		}
 	}
@@ -529,14 +591,27 @@ body {
 			.education__date {
 				color: $primary;
 			}
-			&::before {
+			&::before, &::after {
 				background-color: $primary;
+			}
+		}
+		&:nth-child(odd) {
+			// transition-delay: 0.3s;
+			@extend %scroll-animation-up;
+		}
+		&:nth-child(even) {
+			// transition-delay: 0.6s;
+			@extend %scroll-animation-from-right;
+		}
+		@for $i from 1 through 4 {
+			$delay: $i * 0.4;
+			&:nth-child(#{$i}) {
+				transition-delay: #{$delay}s;
 			}
 		}
 	}
 
 	// .education__date
-
 	&__date {
 		color: $faded;
 		font-size: toRem(15);
@@ -544,13 +619,29 @@ body {
 	}
 
 	// .education__title
-
 	&__title {
 		font-size: toRem(18);
 		margin-bottom: 1rem;
 	}
 	&__subtitle {
 		color: $faded;
+	}
+	&__certificate {
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 0.5rem;
+		a {
+			display: inline-block;
+			width: toRem(180);
+			img {
+				padding: 1rem;
+				max-width: 100%;
+			}
+			&:hover,
+			&:focus {
+				border: 1px solid $primary;
+			}
+		}
 	}
 }
 
@@ -569,7 +660,6 @@ body {
 			padding-bottom: toRem(50);
 		}
 		position: relative;
-		// border: 1px solid yellow;
 		&::before {
 			content: "";
 			width: 1rem;
@@ -594,18 +684,30 @@ body {
 			.experience__date {
 				color: $primary;
 			}
-			&::before {
+			&::before, &::after {
 				background-color: $primary;
 			}
 		}
+		// @for $i from 1 through 3 {
+		// 	// $delay: $i * 0.3;
+		// 	&:nth-child(#{$i}) {
+		// 		transition-delay: $i * 0.3s;
+		// 	}
+		// }
 	}
 
 	// .experience__date
-
 	&__date {
 		color: $faded;
 		font-size: toRem(15);
 		margin-bottom: 1.5rem;
+		@for $i from 1 through 3 {
+			// $delay: $i * 0.3;
+			&:nth-of-type(#{$i}) {
+				transition-delay: $i * 0.3s;
+			}
+		}
+		@extend %scroll-animation-from-right;
 	}
 
 	// .experience__title
@@ -624,6 +726,8 @@ body {
 		li {
 			list-style-type: circle;
 		}
+		transition-delay: 0.6s;
+		@extend %scroll-animation-up;
 	}
 }
 
@@ -639,7 +743,7 @@ body {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(toRem(400), 1fr));
 		gap: 1.5rem;
-		@media (max-width:$mobileSmall){
+		@media (max-width: $mobileSmall) {
 			grid-template-columns: repeat(auto-fit, minmax(toRem(290), 1fr));
 			// gap: .875rem;
 		}
@@ -647,13 +751,24 @@ body {
 
 	// .projects__item
 	&__item {
-		// box-shadow: 10px 10px 5px #4d4d4d;
+		@for $i from 1 through 9 {
+			$delay: $i * 0.4;
+			&:nth-child(#{$i}) {
+				transition-delay: #{$delay}s;
+			}
+		}
+		&:nth-child(odd) {
+			@extend %scroll-animation-up;
+		}
+		&:nth-child(even) {
+			@extend %scroll-animation-from-left;
+		}
 	}
 }
 
 .project {
 	transition: all 0.4s ease;
-	
+
 	// .project__title
 	&__title {
 		font-size: 1.25rem;
@@ -668,12 +783,11 @@ body {
 		position: relative;
 	}
 
-
 	// .project__image
 	&__image {
 		width: 100%;
 		aspect-ratio: 16 / 9;
-		border-radius: .75rem;
+		border-radius: 0.75rem;
 	}
 
 	// .project__item-overlay
@@ -697,19 +811,18 @@ body {
 			padding: 0.75rem 1rem;
 			font-weight: 600;
 			background-color: $primary;
-			color: $mainBackground;
-			// border: 1px solid $mainBackground;
+			color: $mainColor2;
 			border-radius: 1rem;
 			z-index: 3;
 			transition: all 0.3s ease;
 			svg {
 				width: 1rem;
 				height: 1rem;
-				margin-left: .5rem;
+				margin-left: 0.5rem;
 				vertical-align: baseline;
-			} 
+			}
 			&:hover {
-				background-color: $mainBackground;
+				background-color: $mainColor2;
 				border: 1px solid $faded;
 				color: unset;
 			}
@@ -733,10 +846,10 @@ body {
 		span {
 			display: inline-block;
 			padding: 0.75rem;
-			background-color: $mainBackground;
+			background-color: $mainColor2;
 			// border: 1px solid $primary;
 			border-radius: 1rem;
-			@media (max-width:$mobileSmall){
+			@media (max-width: $mobileSmall) {
 				font-size: toRem(14);
 				padding: 0.5rem;
 			}
@@ -744,7 +857,8 @@ body {
 	}
 
 	@media (hover: hover) {
-		&:hover, &:focus-within {
+		&:hover,
+		&:focus-within {
 			.project__content {
 				outline: 1px solid $primary;
 				outline-offset: 5px;

@@ -42,7 +42,7 @@
 		height: 100dvh;
 		margin-left: auto;
 		padding: 6rem 1rem;
-		background-color: $mainBackground;
+		background-color: $mainColor2;
 		@media (max-width:$mobile){
 			 max-width: 100%; 
 			 display: flex;
@@ -129,7 +129,7 @@
 		position: absolute;
 		right: toRem(15);
 		transition: all 0.3s ease 0s;
-		background-color: $mainColor;
+		background-color: $mainColor1;
 		&:first-child {
 			transform: translateY(-5px);
 		}
