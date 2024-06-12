@@ -1,0 +1,39 @@
+button.up-btn {
+	display: none;
+	@media (max-width: toRem(1200)) {
+		display: block;
+		position: fixed;
+		bottom: 2rem;
+		right: 1rem;
+		width: toRem(60);
+		height: toRem(60);
+		z-index: 10;
+		border: 1px solid $faded;
+		border-radius: 50%;
+		background-color: $bg2;
+		color: $faded;
+		transition: all 0.3s ease 0s;
+
+		svg {
+			width: 1.5rem;
+			height: 1.5rem;
+			animation: up-down 1s linear infinite alternate;
+		}
+
+		&:hover, &:focus {
+			border: 1px solid $primary;
+			svg {
+				fill: $primary;
+			}
+		}
+	}
+}
+
+@keyframes up-down {
+	from {
+		transform: translateY(toRem(-5));
+	}
+	to {
+		transform: translateY(toRem(5));
+	}
+}

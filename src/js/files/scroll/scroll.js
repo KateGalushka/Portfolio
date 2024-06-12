@@ -44,34 +44,75 @@ export function pageNavigation() {
 			const targetElement = entry.target;
 			// Обробка пунктів навігації, якщо вказано значення navigator, підсвічуємо поточний пункт меню
 			if (targetElement.dataset.watch === 'navigator') {
-				const navigatorActiveItem = document.querySelector(`[data-goto]._navigator-active`);
-				let navigatorCurrentItem;
-				if (targetElement.id && document.querySelector(`[data-goto="#${targetElement.id}"]`)) {
-					navigatorCurrentItem = document.querySelector(`[data-goto="#${targetElement.id}"]`);
-				} else if (targetElement.classList.length) {
-					for (let index = 0; index < targetElement.classList.length; index++) {
-						const element = targetElement.classList[index];
-						if (document.querySelector(`[data-goto=".${element}"]`)) {
-							navigatorCurrentItem = document.querySelector(`[data-goto=".${element}"]`);
-							break;
-						}
-					}
-				}
+				const navigatorActiveItems = document.querySelectorAll(`[data-goto]._navigator-active`);
+				let navigatorCurrentItems;
+				if (targetElement.id && document.querySelectorAll(`[data-goto="#${targetElement.id}"]`)) {
+					navigatorCurrentItems = document.querySelectorAll(`[data-goto="#${targetElement.id}"]`);
+				} 
+				// else if (targetElement.classList.length) {
+				// 	for (let index = 0; index < targetElement.classList.length; index++) {
+				// 		const element = targetElement.classList[index];
+				// 		if (document.querySelector(`[data-goto=".${element}"]`)) {
+				// 			navigatorCurrentItems = document.querySelectorAll(`[data-goto=".${element}"]`);
+				// 			break;
+				// 		}
+				// 	}
+				// }
 				if (entry.isIntersecting) {
 					// Бачимо об'єкт
 					// navigatorActiveItem ? navigatorActiveItem.classList.remove('_navigator-active') : null;
-					navigatorCurrentItem ? navigatorCurrentItem.classList.add('_navigator-active') : null;
-					//const activeItems = document.querySelectorAll('._navigator-active');
-					//activeItems.length > 1 ? chooseOne(activeItems) : null
+					if (navigatorCurrentItems.length) {
+						navigatorCurrentItems.forEach((item) =>
+							item.classList.add("_navigator-active"));
+						}
+					// navigatorCurrentItem.length
+					// 		? navigatorCurrentItem.classList.add(
+					// 				"_navigator-active"
+					// 			)
+					// 		: null;
+					const activeItems = document.querySelectorAll('._navigator-active');
+					activeItems.length > 1 ? chooseOne(activeItems) : null
 				} else {
 					// Не бачимо об'єкт
-					navigatorCurrentItem ? navigatorCurrentItem.classList.remove('_navigator-active') : null;
+					if (navigatorCurrentItems.length) {
+						navigatorCurrentItems.forEach((item) =>
+							item.classList.remove("_navigator-active")
+						);
+					}
+						// navigatorCurrentItem
+						// 	? navigatorCurrentItem.classList.remove(
+						// 			"_navigator-active"
+						// 		)
+						// 	: null;
 				}
 			}
 		}
 	}
 	function chooseOne(activeItems) {
+		let scrollPosition = window.scrollY - window.innerHeight; 
+		let currentSection = null;
+		let activeSection;
+		activeItems.forEach(item => {
+			let gotoLink = item.closest('[data-goto]')? item.closest('[data-goto]').dataset.goto : null;
+			if (gotoLink) {
+				activeSection = document.querySelector(`${gotoLink}`);
+			}
+			let sectionTop = activeSection.getBoundingClientRect().top + window.scrollY;
+			let sectionHeight = activeSection.offsetHeight;
+			if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+				currentSection = activeSection;
+			};
 
+		})
+		if (currentSection) {
+			activeItems.forEach(item => {
+				item.classList.remove("_navigator-active");
+			})
+			const activeItem = document.querySelector(`[data-goto="#${currentSection.id}"]`);
+        if (activeItem) {
+            activeItem.classList.add("_navigator-active");
+        }
+		}
 	}
 	// Прокручування по хешу
 	if (getHash()) {

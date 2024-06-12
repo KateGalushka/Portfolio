@@ -14,8 +14,8 @@ $fontSize: toRem(16); // де 14(px) - розмір шрифту за замов
 $mainColor1: rgb(240, 240, 240);
 $mainColor2: #000;
 $mainOverlay: rgba(120, 120, 120, 0.5);
-$mainBackground: #0d0d0d;
-$bg2: rgb(77, 77, 77);
+$mainBackground: rgb(13, 13, 13);
+$bg2: rgba(38, 38, 38, 0.7);
 $primary: rgb(228, 175, 18);
 $faded: rgb(153, 153, 153);
 $gradient: linear-gradient(90deg, hsla(45, 85%, 48%, 1) 0%, hsla(0, 0%, 100%, 1) 100%);
@@ -150,8 +150,10 @@ body {
 @import "common";
 
 // Підключення стилів окремих блоків
+@import "sidenav";
 @import "header";
 @import "footer";
+@import "up-btn";
 
 // Підключення стилів окремих сторінок
 @import "home";
@@ -328,6 +330,9 @@ body {
 
 //home section
 .home {
+	@media (min-width: $tablet) {
+		min-height: 100dvh;
+	}
 	// .home__label
 	&__label {
 	}
@@ -383,11 +388,15 @@ body {
 
 	// .home__btn-goToProjects
 	&__button-block {
+		max-width: 75%;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1.5rem;
 		align-items: center;
 		justify-content: space-between;
+		@media (max-width: toRem(1200)) {
+			max-width: 100%;
+		}
 		@media (max-width: $tablet) {
 			justify-content: center;
 			gap: 3rem;
@@ -459,6 +468,10 @@ body {
 .about {
 	// .about__content
 	&__content {
+		max-width: 75%;
+		@media (max-width: toRem(1200)) {
+			max-width: 100%;
+		}
 	}
 
 	// .about__title
@@ -478,7 +491,7 @@ body {
 		@include adaptiveValue("font-size", 20, 16);
 		line-height: 1.5;
 		color: $faded;
-		transition-delay: 0.6s;
+		transition-delay: 0.4s;
 		@extend %scroll-animation-up;
 	}
 }
@@ -530,6 +543,7 @@ body {
 				filter: grayscale(0);
 			}
 		}
+
 		&:nth-child(odd) {
 			@extend %scroll-animation-up;
 		}
@@ -591,24 +605,19 @@ body {
 			.education__date {
 				color: $primary;
 			}
-			&::before, &::after {
+			&::before,
+			&::after {
 				background-color: $primary;
 			}
 		}
+
 		&:nth-child(odd) {
-			// transition-delay: 0.3s;
 			@extend %scroll-animation-up;
 		}
 		&:nth-child(even) {
-			// transition-delay: 0.6s;
 			@extend %scroll-animation-from-right;
 		}
-		@for $i from 1 through 4 {
-			$delay: $i * 0.4;
-			&:nth-child(#{$i}) {
-				transition-delay: #{$delay}s;
-			}
-		}
+		
 	}
 
 	// .education__date
@@ -643,6 +652,12 @@ body {
 			}
 		}
 	}
+	@for $i from 1 through 4 {
+			$delay: $i * 0.2;
+			.education__item:nth-child(#{$i}) {
+				transition-delay: #{$delay}s;
+			}
+		}
 }
 
 //EXPERIENCE
@@ -684,7 +699,8 @@ body {
 			.experience__date {
 				color: $primary;
 			}
-			&::before, &::after {
+			&::before,
+			&::after {
 				background-color: $primary;
 			}
 		}
@@ -701,15 +717,9 @@ body {
 		color: $faded;
 		font-size: toRem(15);
 		margin-bottom: 1.5rem;
-		@for $i from 1 through 3 {
-			// $delay: $i * 0.3;
-			&:nth-of-type(#{$i}) {
-				transition-delay: $i * 0.3s;
-			}
-		}
 		@extend %scroll-animation-from-right;
 	}
-
+	
 	// .experience__title
 	&__title {
 		font-size: toRem(18);
@@ -726,8 +736,16 @@ body {
 		li {
 			list-style-type: circle;
 		}
-		transition-delay: 0.6s;
 		@extend %scroll-animation-up;
+	}
+
+	@for $i from 1 through 3 {
+		.experience__item:nth-child(#{$i}) .experience__date {
+			transition-delay: #{$i * 0.3}s;
+		}
+		.experience__item:nth-child(#{$i}) .experience__description {
+			transition-delay: #{$i * 0.4}s;
+		}
 	}
 }
 
@@ -742,7 +760,7 @@ body {
 	&__box {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(toRem(400), 1fr));
-		gap: 1.5rem;
+		gap: 2rem 1.5rem;
 		@media (max-width: $mobileSmall) {
 			grid-template-columns: repeat(auto-fit, minmax(toRem(290), 1fr));
 			// gap: .875rem;
@@ -752,7 +770,7 @@ body {
 	// .projects__item
 	&__item {
 		@for $i from 1 through 9 {
-			$delay: $i * 0.4;
+			$delay: $i * 0.3;
 			&:nth-child(#{$i}) {
 				transition-delay: #{$delay}s;
 			}

@@ -10,12 +10,14 @@
 	pointer-events: none;
 	z-index: 1000;
 	mix-blend-mode: difference;
+
 	&__shadow {
 		will-change: transform;
-		transition: all 0.05s linear 0s;
+		transition: transform 0.05s linear 0s;
 		position: fixed;
 		width: toRem(30);
 		height: toRem(30);
+		
 		&::after {
 			content: "";
 			position: absolute;

@@ -1,7 +1,21 @@
-.header{
+.header {
 	background-color: transparent;
+	position: relative;
+	@media (max-width: toRem(1200)) {
+		&._header-scroll {
+			position: fixed;
+			top: -200%;
+			width: 100%;
+			z-index: 5;
+		}
+		&._header-show {
+			transition: top 0.3s ease 0s;
+			top: 0;
+			background-color: rgb(77, 77, 77, 0.3);
+		}
+	}
 
 	&__menu {
-		padding: 1rem 0 0;
+		padding: 0.5rem 0;
 	}
 }

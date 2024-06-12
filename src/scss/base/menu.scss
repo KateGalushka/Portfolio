@@ -59,9 +59,11 @@
 	// .menu__link
 	&__link {
 		transition: all 0.3s ease;
+		&._navigator-active,
 		&:hover {
 			color: $primary;
 		}
+		
 		svg {
 			// fill: currentColor;
 			width: 1rem;
@@ -113,6 +115,7 @@
 	z-index: 10;
 	border: 1px solid $faded;
 	border-radius: 50%;
+	background-color: $bg2;
 	transition: all 0.3s ease 0s;
 	&:hover {
 		border: 1px solid $primary;

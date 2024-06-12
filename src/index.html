@@ -45,7 +45,7 @@
 			</div>
 		</aside>
 		<main class="page">
-			<section id="home" class="section home" data-watch>
+			<section id="home" class="section home" data-watch="navigator">
 				<div class="home__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#home"></use>
@@ -85,9 +85,9 @@
 				</div>
 			</section>
 
-			<section id="about" class="section about" data-watch data-watch data-watch-threshold="0, 0.3">
+			<section id="about" class="section about" data-watch-threshold="0.3" data-watch="navigator">
 				<div class="about__label section-label">
-					<svg>
+					<svg> 
 						<use xlink:href="@img/icons/icons.svg#user"></use>
 					</svg>
 					About
@@ -111,7 +111,7 @@
 				</div>
 			</section>
 
-			<section id="skills" class="section skills" data-watch data-watch-threshold="0, 0.3">
+			<section id="skills" class="section skills" data-watch-threshold="0.3" data-watch="navigator">
 				<div class="skills__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#shapes"></use>
@@ -162,7 +162,7 @@
 				</div>
 			</section>
 
-			<section id="education" class="section education" data-watch data-watch-threshold="0, 0.3">
+			<section id="education" class="section education" data-watch-threshold="0.3" data-watch="navigator">
 				<div class="education__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#school"></use>
@@ -221,7 +221,7 @@
 				</div>
 			</section>
 
-			<section id="experience" class="section experience" data-watch data-watch-threshold="0.3">
+			<section id="experience" class="section experience" data-watch-threshold="0.3" data-watch="navigator">
 				<div class="experience__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#toolbox"></use>
@@ -260,7 +260,7 @@
 					</div>
 			</section>
 
-			<section id="projects" class="section projects" data-watch>
+			<section id="projects" class="section projects" data-watch="navigator">
 				<div class="projects__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#table"></use>
@@ -359,10 +359,11 @@
 				</div>
 
 			</section>
-
+			
 		</main>
-		@@include('html/_footer.htm',{})
 	</div>
+	@@include('html/_sidenav.htm',{})
+	@@include('html/_up-btn.htm',{})
 	@@include('html/_js.htm',{})
 </body>
 
