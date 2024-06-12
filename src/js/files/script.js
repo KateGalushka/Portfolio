@@ -13,21 +13,21 @@ document.addEventListener('click', (e)=> {
 
 // Плавна навігація до Home section
 
-const upBtn = document.querySelector(".up-btn");
-const homeSection = document.querySelector("#home"); 
+// const upBtn = document.querySelector(".up-btn");
+// const homeSection = document.querySelector("#home"); 
 
-if (upBtn && homeSection) {
-	upBtn.addEventListener("click", (event) => {
-		event.preventDefault(); 
-		const offset = 80;
-		const homePosition = homeSection.getBoundingClientRect().top;
-		const offsetPosition = homePosition + window.scrollY - offset;
-		window.scrollTo({
-			top: offsetPosition,
-			behavior: "smooth"
-		})
-	});
-}
+// if (upBtn && homeSection) {
+// 	upBtn.addEventListener("click", (event) => {
+// 		event.preventDefault(); 
+// 		const offset = 80;
+// 		const homePosition = homeSection.getBoundingClientRect().top;
+// 		const offsetPosition = homePosition + window.scrollY - offset;
+// 		window.scrollTo({
+// 			top: offsetPosition,
+// 			behavior: "smooth"
+// 		})
+// 	});
+// }
 
 
 

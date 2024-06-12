@@ -733,6 +733,9 @@ body {
 		line-height: 1.5;
 		color: $faded;
 		padding-left: 2rem;
+		@media (max-width:$mobileSmall){
+			 padding-left: 0rem;
+		}
 		li {
 			list-style-type: circle;
 		}
