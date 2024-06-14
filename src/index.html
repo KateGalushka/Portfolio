@@ -45,7 +45,7 @@
 			</div>
 		</aside>
 		<main class="page">
-			<section id="home" class="section home" data-watch="navigator">
+			<section id="home" class="section home" data-watch="navigator" data-watch-threshold="0.3">
 				<div class="home__label section-label">
 					<svg>
 						<use xlink:href="@img/icons/icons.svg#home"></use>
@@ -72,7 +72,7 @@
 					<a href="@img/Kate_Halushka_CV_(front-end_developer).pdf"
 						download="Kate Galushka CV (front-end developer).pdf" class="home__btn-download">
 						<!-- <a href="https://drive.google.com/file/d/1r3rVrJff8jklchcCIjrKPy-ogjxIkyc1/view?usp=sharing"></a> -->
-						
+
 						Download CV
 						<svg>
 							<use xlink:href="@img/icons/icons.svg#download"></use>
@@ -89,7 +89,7 @@
 
 			<section id="about" class="section about" data-watch-threshold="0.3" data-watch="navigator">
 				<div class="about__label section-label">
-					<svg> 
+					<svg>
 						<use xlink:href="@img/icons/icons.svg#user"></use>
 					</svg>
 					About
@@ -171,13 +171,14 @@
 					</svg>
 					Education
 				</div>
-				<div class="education__timeline" >
+				<div class="education__timeline">
 					<div class="education__item">
 						<p class="education__date">10.2023 - 02.2024</p>
 						<h3 class="education__title">Vue.js Course</h3>
 						<h4 class="education__subtitle">Education Platform "Freelancer Life Style"</h4>
 						<div class="education__certificate">
-							<a href="https://drive.google.com/file/d/1knAKRFyoqKrwBoUHkZ7M9gkekXf9uyMi/view?usp=sharing" target="_blank">
+							<a href="https://drive.google.com/file/d/1knAKRFyoqKrwBoUHkZ7M9gkekXf9uyMi/view?usp=sharing"
+								target="_blank">
 								<img src="@img/cert-Vue.jpg" alt="Image">
 							</a>
 						</div>
@@ -187,7 +188,8 @@
 						<h3 class="education__title">Front-End Self-Paced Online Program</h3>
 						<h4 class="education__subtitle">EPAM University</h4>
 						<div class="education__certificate">
-							<a href="https://drive.google.com/file/d/1LYnaqd_LjqPjKFAg27cETUz1RXgggIzv/view?usp=sharing" target="_blank">
+							<a href="https://drive.google.com/file/d/1LYnaqd_LjqPjKFAg27cETUz1RXgggIzv/view?usp=sharing"
+								target="_blank">
 								<img src="@img/cert-epam.jpg" alt="Image">
 							</a>
 						</div>
@@ -213,7 +215,7 @@
 								<img src="@img/cert-Angular.jpg" alt="Image">
 							</a>
 						</div>
-						
+
 					</div>
 					<div class="education__item">
 						<p class="education__date">09.1997 - 06.2002</p>
@@ -289,13 +291,6 @@
 									<span>i18n</span>
 								</div>
 							</div>
-							<!-- <div class="project__features">
-								<span>Vue3.js Options API</span>
-								<span>Vue Router</span>
-								<span>Vuex</span>
-								<span>Firebase</span>
-								<span>i18n</span>
-							</div> -->
 						</div>
 					</div>
 					<div class="projects__item project">
@@ -358,10 +353,27 @@
 							</div>
 						</div>
 					</div>
+					<div class="projects__item project">
+						<div class="project__title">Traverse</div>
+						<div class="project__content">
+							<img class="project__image" src="@img/proj6.jpg" alt="Traverse landing page">
+							<div class="project__item-overlay">
+								<a href="https://traverse-landing-tailwind.netlify.app" target="_blank">
+									Go to App
+									<svg>
+										<use xlink:href="@img/icons/icons.svg#arrow-up-right"></use>
+									</svg>
+								</a>
+								<div class="project__features">
+									<span>Vite</span>
+									<span>Tailwind</span>
+									<span>Swiper</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-
 			</section>
-			
 		</main>
 	</div>
 	@@include('html/_sidenav.htm',{})
